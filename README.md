@@ -93,5 +93,5 @@ This project is licensed under the MIT License.
 This README includes key sections like installation, usage instructions, API routes, models, technologies, and license details.
 
 ## Walkthrough Video
-
+https://1drv.ms/v/s!Ajvx8AL_kpmUhp9uuKw10s6h6brXwA?e=vhxGfA
 
