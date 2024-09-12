@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 // MongoDB connection
-mongoose.connect('mongodb://localhost/social-network-api', {});
+mongoose.connect('mongodb://localhost/social-network-api');
 
 mongoose.connection.on('connected', () => {
   console.log('Mongoose connected to social-network-api database');
@@ -22,6 +22,4 @@ process.on('SIGINT', () => {
   });
 });
 
-module.exports = mongoose;
-
-
+module.exports = mongoose.connection;

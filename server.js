@@ -1,22 +1,28 @@
 const express = require('express');
-const mongoose = require('mongoose');
+const routes = require('./routes'); // Import the routes folder
+const mongooseConnection = require('./config/connection');
+
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-// Import MongoDB connection
-require('./config/connection');
-
-// Middleware
+// Middleware to parse JSON and URL-encoded data
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Routes
-app.use('/api/users', require('./routes/api/users'));
-app.use('/api/thoughts', require('./routes/api/thoughts'));
+// Use the routes for /api prefix
+app.use('/api', routes);  // This prefixes all routes with '/api'
 
-// Start Server
+// Listen for the MongoDB connection to open
+mongooseConnection.once('open', () => {
+  console.log('Connected to MongoDB');
+});
+
+// Start the server
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+
+
+
 
 

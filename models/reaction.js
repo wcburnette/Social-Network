@@ -2,10 +2,6 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const reactionSchema = new Schema({
-  reactionId: {
-    type: Schema.Types.ObjectId,
-    default: () => new mongoose.Types.ObjectId(),
-  },
   reactionBody: {
     type: String,
     required: true,
@@ -20,8 +16,16 @@ const reactionSchema = new Schema({
     default: Date.now,
     get: (timestamp) => new Date(timestamp).toLocaleDateString(),
   },
+}, {
+  toJSON: {
+    getters: true,
+  },
+  id: false,
 });
 
+// Export the reactionSchema for embedding in Thought schema
 module.exports = reactionSchema;
+
+
 
 
